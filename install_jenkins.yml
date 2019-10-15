@@ -1,0 +1,29 @@
+---
+- name: Install softwares  on the underlying servers
+  hosts: ec2
+  gather_facts: no
+  tasks:
+    - name: install java
+      yum:
+        name: java-1.8.0-openjdk-devel
+        state: present
+      become: yes
+    - name: enable jenkins repositopry
+      get_url:
+        url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+      become: yes
+    - name: add repo to the system and installing keys
+      command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+      become: yes
+    - name: install jenkins
+      yum:
+        name: jenkins
+        state: present
+      become: yes
+    - name: start jenkins service
+      command: systemctl start jenkins
+      become: yes
+    - name: check if jenkins is up and running
+      command: systemctl status jenkins
+      become: yes
