@@ -1,7 +1,6 @@
 # Ansible Scripts
 
-```1
----
+* `1`
 
 install_jenkins.yml
 ---------------------
@@ -16,4 +15,4 @@ inventory file to be used which contains your ec2 server details on which ansibl
 author
 ------
 
-amansoni369@gmail.com - Aman Soni
+*amansoni369@gmail.com - Aman Soni
