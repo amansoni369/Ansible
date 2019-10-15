@@ -1,18 +1,17 @@
 # Ansible Scripts
 
-* `1`
 
 install_jenkins.yml
 ---------------------
 
-the script install jenkins on an amazon ec2 server.
+The script install jenkins on an amazon ec2 server and also starts the jenkins service
 
 dependencies
 -------------
 
-inventory file to be used which contains your ec2 server details on which ansible should be installed
+Inventory file to be used which contains your ec2 server details on which ansible should be installed. The key file(pem file) required to login to ec2 server should be accessible to you.
 
 author
 ------
 
-*amansoni369@gmail.com - Aman Soni
+amansoni369@gmail.com - Aman Soni
