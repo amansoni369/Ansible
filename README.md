@@ -11,7 +11,7 @@ dependencie(s)
 
 Inventory file to be used which contains your ec2 server details on which ansible should be installed. The key file(pem file) required to login to ec2 server should be accessible to you.
 
-author
-------
+author info
+------------
 
 amansoni369@gmail.com - Aman Soni
