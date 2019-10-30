@@ -16,7 +16,27 @@ class FilterModule(object):
             }
 
     def upper_test(self, var):
-        return var.upper()
+        try:
+            return var.upper()
+        except Exception as ex:
+            display.vvv("unexpected error occured %s")
 
     def multiply_test(self, val):
-        return val*val
+        errors = self.__divide_test(val)
+        if errors:
+            return({
+                'warning': 'cant divide by 0'
+            })
+        else:
+            return val/2
+
+    def __divide_test(self, val):
+        errors = []
+        try:
+            result = val/2
+        except:
+            display.vvv('cant divide by 0')
+            return({
+                'errors': 'cant divide by 0'
+            })
+        return errors
