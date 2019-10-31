@@ -1,0 +1,37 @@
+---
+- name: this playbook creates a basic playbook
+  hosts: localhost
+  gather_facts: no
+  connection: local
+#  vars:
+#  vars_files:
+
+  tasks:
+
+    - name: set random number
+      set_fact:
+        outfile: "/home/ec2-user/ansible/temp_play_{{ 10000 | random }}.yml"
+
+    - name: debug outfile
+      debug:
+        msg: "output file to store dynamic playbook - {{ outfile }}"
+
+    - name: write dynamic playbook
+      blockinfile:
+        path: "{{ outfile }}"
+        create: yes
+        insertafter: EOF
+        marker_begin: "Start dummy playbook"
+        marker_end: "End dummy playbook"
+        block: |
+
+          - name: install basic package(s)
+            hosts: localhost
+            gather_facts: no
+            connection: local
+            tasks:
+              - name: install cowsay
+                yum:
+                  name: cowsay
+                  state: present
+      become: yes
