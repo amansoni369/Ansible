@@ -10,7 +10,7 @@
 
     - name: set random number
       set_fact:
-        outfile: "/home/ec2-user/ansible/temp_play_{{ 10000 | random }}.yml"
+        outfile: "/tmp/temp_play_{{ 10000 | random }}.yml"
 
     - name: debug outfile
       debug:
