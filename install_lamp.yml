@@ -1,0 +1,30 @@
+---
+- name: this playbook sets up a LAMP stack on ubuntu machine
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+    packages:
+      - apache2
+      - mysql-server
+      - php
+      - libapache2-mod-php 
+      - php-mysql
+  tasks:
+
+    - name: install required packages to setup lamp stack
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+       - "{{ packages }}"
+      become: yes
+
+    - name: start the required services
+      systemd:
+        state: started
+        service: "{{ item }}"
+      with_items:
+        - apache2
+        - php
+      become: yes
