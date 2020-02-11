@@ -1,0 +1,23 @@
+---
+- name: delete old files
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: find files older than 3 mins
+      find:
+        paths: /home/ec2-user
+        age: 3m
+        recurse: yes
+        patterns: '*.txt'
+      register: old_files
+
+    - name: debug oldfiles
+      debug:
+        var: old_files
+
+    - name: remove files older than 3 minutes
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items:
+        - "{{ old_files.files }}"
